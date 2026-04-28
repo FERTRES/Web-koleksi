@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATABASE PROMPT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>DATABASE PROMPT</h1>
+                <p>Koleksi Prompt Jailbreak</p>
+            </div>
+            <div class="logo-right">
+                <p>Total Prompt: <span id="totalPrompt">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari prompt...">
+            </div>
+            <div class="filter-group">
+                <button class="filter-btn active" data-category="all">Semua</button>
+                <button class="filter-btn" data-category="jailbreak">Jailbreak</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">📋 Total Prompt: <span class="stat-value" id="statTotal">0</span></div>
+            <div class="stat-item">🔓 Jailbreak: <span class="stat-value" id="statJailbreak">0</span></div>
+            <div class="stat-item">📝 Kategori: 1</div>
+        </div>
+
+        <!-- Prompt Grid -->
+        <div id="promptGrid" class="prompt-grid">
+            <div class="loading">Loading prompts...</div>
+        </div>
+    </div>
+
+    <!-- Admin Button -->
+    <div class="admin-btn">
+        <a href="admin.html">👑</a>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+                  </html>
