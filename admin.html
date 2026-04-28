@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | DATABASE PROMPT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: #1a1a2a;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #2a2a3a;
+        }
+        
+        .login-container h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #ff3366;
+        }
+        
+        .login-container input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            background: #0f0f1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff3366, #ff6b35);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0f0f1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .form-group textarea {
+            min-height: 200px;
+            font-family: monospace;
+        }
+        
+        .btn-submit {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff3366, #ff6b35);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .prompt-list {
+            margin-top: 40px;
+        }
+        
+        .list-item {
+            background: #1e1e2e;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .delete-btn {
+            padding: 5px 15px;
+            background: #ff3366;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 20px;
+            background: #333;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <!-- Login Form -->
+        <div id="loginForm" class="login-container">
+            <h2>ADMIN LOGIN</h2>
+            <input type="text" id="username" placeholder="Username" autocomplete="off">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+        
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel">
+            <button class="logout-btn" onclick="logout()">Logout</button>
+            
+            <h1 style="margin-bottom: 30px;">ADMIN PANEL - DATABASE PROMPT</h1>
+            
+            <!-- Add Prompt Form -->
+            <div style="background: #1a1a2a; padding: 30px; border-radius: 16px; margin-bottom: 40px;">
+                <h2 style="margin-bottom: 20px; color: #ff3366;">Tambah Prompt Baru</h2>
+                <div class="form-group">
+                    <label>Judul Prompt</label>
+                    <input type="text" id="promptTitle" placeholder="Ex: SouGPT #7">
+                </div>
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" id="promptAuthor" placeholder="Created By...">
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="promptCategory" style="width:100%; padding:12px; background:#0f0f1a; border:1px solid #333; border-radius:8px; color:white;">
+                        <option value="jailbreak">Jailbreak</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Password (Opsional)</label>
+                    <input type="text" id="promptPassword" placeholder="Password prompt...">
+                </div>
+                <div class="form-group">
+                    <label>Isi Prompt</label>
+                    <textarea id="promptContent" placeholder="Tulis isi prompt di sini..."></textarea>
+                </div>
+                <button class="btn-submit" onclick="addPrompt()">+ Tambah Prompt</button>
+            </div>
+            
+            <!-- Existing Prompts -->
+            <div class="prompt-list">
+                <h2 style="margin-bottom: 20px;">Daftar Prompt</h2>
+                <div id="promptList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="supabase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
